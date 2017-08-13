@@ -1,12 +1,13 @@
-function UpdateSubmodules
+function Print ($Message) {
+    Write-Host $Message -ForegroundColor Blue
+}
+
+$FirstTime = !(Test-Path ./docker-elk/README.md)
+If ($FirstTime -eq $True)
 {
-    Write-Information "Updating git submodules..."
+    Print("Updating git submodules...")
     git submodule update --init --recursive
 }
 
-# Update git submodules if required
-$GitSubmodules = Test-Path ./submodules/docker-elk/README.md
-If ($GitSubmodules -eq $False)
-{
-    UpdateSubmodules
-}
+Print("Starting the Elastic Stack in a new process...")
+Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
