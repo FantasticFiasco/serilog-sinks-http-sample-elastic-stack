@@ -1,4 +1,7 @@
 build_script:
-  - cmd: cd ./src
-  - cmd: dotnet restore
-  - cmd: dotnet publish -c Release -o out
+  - ps: $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
+  - ps: Write-Host "$logo" -ForegroundColor Green
+
+  - ps: cd ./src
+  - ps: dotnet restore
+  - ps: dotnet publish -c Release -o out
