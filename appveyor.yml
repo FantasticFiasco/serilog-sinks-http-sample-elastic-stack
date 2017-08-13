@@ -5,4 +5,4 @@ build_script:
   # Build
   - ps: cd ./src
   - ps: dotnet restore
-  - ps: dotnet publish -c Release -o out
+  - ps: dotnet build
