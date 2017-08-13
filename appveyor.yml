@@ -1,1 +1,4 @@
-#
+build_script:
+  - cmd: cd ./src
+  - cmd: dotnet restore
+  - cmd: dotnet publish -c Release -o out
