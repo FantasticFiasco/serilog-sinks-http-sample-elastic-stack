@@ -1,10 +1,10 @@
 build_script:
-- ps: >-
-  # Display logo
-  $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
-  Write-Host "$logo" -ForegroundColor Green
+  - ps: |
+    # Display logo
+    $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
+    Write-Host "$logo" -ForegroundColor Green
 
-  # Build
-  cd ./src
-  dotnet restore
-  dotnet build
+    # Build
+    cd ./src
+    dotnet restore
+    dotnet build
