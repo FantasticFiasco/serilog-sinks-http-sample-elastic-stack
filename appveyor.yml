@@ -4,5 +4,4 @@ build_script:
     Write-Host "$logo" -ForegroundColor Green;
 - ps: >-
     cd ./src;
-    dotnet restore;
-    dotnet build;
+    docker build -t elastic-stack-sample .;
