@@ -1,14 +1,14 @@
-function Print ($Message) {
+function Print ([string] $Message) {
     Write-Host $Message -ForegroundColor Blue
 }
 
-function InitSubmodules
+function Initialize-Submodules
 {
     Print("Update git submodules")
     git submodule update --init --recursive
 }
 
-function ConfigureLogstash
+function Edit-LogstashPipeline
 {
     Print("Configure Logstash HTTP input plugin to use JSON codec")
     $LogstashConfiguration =
@@ -31,13 +31,7 @@ output {
     $LogstashConfiguration | Out-File -FilePath ./docker-elk/logstash/pipeline/logstash.conf
 }
 
-function StartElasticStack
-{
-    Print("Start Elastic Stack in a new process")
-    Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
-}
-
-function ConfigureLogstashIndexPattern
+function Edit-LogstashIndexPattern
 {
     Print("Wait 2 minutes for Elastic Stack to complete its initialization")
     Start-Sleep 120
@@ -53,16 +47,30 @@ function ConfigureLogstashIndexPattern
     Invoke-RestMethod "http://localhost:9200/.kibana/config/5.5.1" -Method Put -Headers $Headers -Body $Body
 }
 
+function Start-ElasticStack
+{
+    Print("Start Elastic Stack in a new process")
+    Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
+}
+
+function Open-Kibana
+{
+    Print("Open Kibana in browser")
+    Start-Process "http://localhost:5601"
+}
+
 $FirstTime = !(Test-Path ./docker-elk/README.md)
 If ($FirstTime -eq $True)
 {
-    InitSubmodules
-    ConfigureLogstash
+    Initialize-Submodules
+    Edit-Logstash
 }
 
-StartElasticStack
+Start-ElasticStack
 
 If ($FirstTime -eq $True)
 {
-    ConfigureLogstashIndexPattern
+    Edit-LogstashIndexPattern
 }
+
+Open-Kibana
