@@ -14,18 +14,18 @@ function Edit-LogstashPipeline
     $LogstashConfiguration =
 @"
 input {
-    http {
-        port => 31311
-        codec => json
+	http {
+		port => 31311
+		codec => json
 	}
 }
 
 ## Add your filters / logstash plugins configuration here
 
 output {
-    elasticsearch {
-        hosts => "elasticsearch:9200"
-    }
+	elasticsearch {
+		hosts => "elasticsearch:9200"
+	}
 }
 "@
     $LogstashConfiguration | Out-File -FilePath ./docker-elk/logstash/pipeline/logstash.conf -Encoding utf8
