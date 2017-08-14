@@ -13,6 +13,7 @@ namespace ElasticStackExample
                 .WriteTo.DurableHttp(
                     requestUri: "http://localhost:31311",
                     batchFormatter: new ArrayBatchFormatter())
+                .WriteTo.Console()
                 .CreateLogger()
                 .ForContext<Program>();
 
