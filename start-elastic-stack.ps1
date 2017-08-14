@@ -49,7 +49,7 @@ function Edit-LogstashIndexPattern
 
 function Start-ElasticStack
 {
-    Print("Start Elastic Stack in a new process")
+    Print("Start Elastic Stack in new process")
     Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
 }
 
