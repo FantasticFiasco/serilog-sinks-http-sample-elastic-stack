@@ -4,13 +4,13 @@ function Print ([string] $Message) {
 
 function Initialize-Submodules
 {
-    Print("Update git submodules")
+    Print("Update git submodules...")
     git submodule update --init --recursive
 }
 
 function Edit-LogstashPipeline
 {
-    Print("Configure Logstash HTTP input plugin to use JSON codec")
+    Print("Configure Logstash HTTP input plugin to use JSON codec...")
     $LogstashConfiguration =
 @"
 input {
@@ -33,10 +33,10 @@ output {
 
 function Edit-LogstashIndexPattern
 {
-    Print("Wait 2 minutes for Elastic Stack to complete its initialization")
+    Print("Wait 2 minutes for Elastic Stack to complete its initialization...")
     Start-Sleep 120
 
-    Print("Configure Logstash index pattern");
+    Print("Configure Logstash index pattern...");
     $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
     $Headers.Add("Content-Type", 'application/json')
 
@@ -49,7 +49,7 @@ function Edit-LogstashIndexPattern
 
 function Start-ElasticStack
 {
-    Print("Start Elastic Stack in new process")
+    Print("Start Elastic Stack in new process...")
     Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
 }
 
@@ -66,3 +66,5 @@ If ($FirstTime -eq $True)
 {
     Edit-LogstashIndexPattern
 }
+
+Print("Done, the Elastic Stack is now running!");

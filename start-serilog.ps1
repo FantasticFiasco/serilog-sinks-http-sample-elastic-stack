@@ -4,13 +4,13 @@ function Print ([string] $Message) {
 
 function Initialize-Image
 {
-    Print("Build Docker image")
+    Print("Build Docker image...")
     docker build -t elastic-stack-sample ./src
 }
 
 function Start-Container
 {
-    Print("Start Docker container")
+    Print("Start Docker container...")
     docker run -it --rm elastic-stack-sample
 }
 
