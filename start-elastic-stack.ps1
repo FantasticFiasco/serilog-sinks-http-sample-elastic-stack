@@ -28,7 +28,7 @@ output {
     }
 }
 "@
-    $LogstashConfiguration | Out-File -FilePath ./docker-elk/logstash/pipeline/logstash.conf
+    $LogstashConfiguration | Out-File -FilePath ./docker-elk/logstash/pipeline/logstash.conf -Encoding utf8
 }
 
 function Edit-LogstashIndexPattern
