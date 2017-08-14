@@ -63,7 +63,7 @@ $FirstTime = !(Test-Path ./docker-elk/README.md)
 If ($FirstTime -eq $True)
 {
     Initialize-Submodules
-    Edit-Logstash
+    Edit-LogstashPipeline
 }
 
 Start-ElasticStack
