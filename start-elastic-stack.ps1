@@ -40,6 +40,30 @@ function StartElasticStack
     Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
 }
 
+function ConfigureLogstashIndexPattern
+{
+    Print("Wait 2 minutes for the Elastic Stack to complete its initialization...")
+    Start-Sleep 120
+
+    Print("Configure Logstash index pattern...");
+    $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+    $headers.Add("Content-Type", 'application/json')
+
+    $body = @{
+        title="logstash-*"
+        timeFieldName="@timestamp"
+        notExpandable=true
+    }
+
+    Invoke-RestMethod http://localhost:9200/.kibana/index-pattern/logstash-* -Method Put -Headers $headers -Body $body | ConvertTo-Json
+    
+    $body = @{
+        defaultIndex="logstash-*"
+    }
+
+    Invoke-RestMethod http://localhost:9200/.kibana/config/5.5.1 -Method Put -Headers $headers -Body $body | ConvertTo-Json
+}
+
 $FirstTime = !(Test-Path ./docker-elk/README.md)
 If ($FirstTime -eq $True)
 {
@@ -48,3 +72,8 @@ If ($FirstTime -eq $True)
 }
 
 StartElasticStack
+
+If ($FirstTime -eq $True)
+{
+    ConfigureLogstashIndexPattern
+}
