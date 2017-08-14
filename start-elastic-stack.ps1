@@ -53,12 +53,6 @@ function Start-ElasticStack
     Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
 }
 
-function Open-Kibana
-{
-    Print("Open Kibana in browser")
-    Start-Process "http://localhost:5601"
-}
-
 $FirstTime = !(Test-Path ./docker-elk/README.md)
 If ($FirstTime -eq $True)
 {
@@ -72,5 +66,3 @@ If ($FirstTime -eq $True)
 {
     Edit-LogstashIndexPattern
 }
-
-Open-Kibana
