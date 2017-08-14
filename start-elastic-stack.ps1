@@ -46,10 +46,10 @@ function ConfigureLogstashIndexPattern
     $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
     $Headers.Add("Content-Type", 'application/json')
 
-    $Body = '{ "title"="logstash-*", "timeFieldName"="@timestamp", "notExpandable"=true }'
+    $Body = '{ "title":"logstash-*", "timeFieldName":"@timestamp", "notExpandable":true }'
     Invoke-RestMethod "http://localhost:9200/.kibana/index-pattern/logstash-*" -Method Put -Headers $Headers -Body $Body
     
-    $Body = '{ "defaultIndex"="logstash-*" }'
+    $Body = '{ "defaultIndex":"logstash-*" }'
     Invoke-RestMethod "http://localhost:9200/.kibana/config/5.5.1" -Method Put -Headers $Headers -Body $Body
 }
 
