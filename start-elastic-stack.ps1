@@ -14,9 +14,6 @@ function ConfigureLogstash
     $LogstashConfiguration =
 @"
 input {
-    tcp {
-        port => 5000
-    }
     http {
         port => 31311
         codec => json
@@ -46,22 +43,14 @@ function ConfigureLogstashIndexPattern
     Start-Sleep 120
 
     Print("Configure Logstash index pattern...");
-    $headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-    $headers.Add("Content-Type", 'application/json')
+    $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+    $Headers.Add("Content-Type", 'application/json')
 
-    $body = @{
-        title="logstash-*"
-        timeFieldName="@timestamp"
-        notExpandable=true
-    }
-
-    Invoke-RestMethod http://localhost:9200/.kibana/index-pattern/logstash-* -Method Put -Headers $headers -Body $body | ConvertTo-Json
+    $Body = '{ "title"="logstash-*", "timeFieldName"="@timestamp", "notExpandable"=true }'
+    Invoke-RestMethod "http://localhost:9200/.kibana/index-pattern/logstash-*" -Method Put -Headers $Headers -Body $Body
     
-    $body = @{
-        defaultIndex="logstash-*"
-    }
-
-    Invoke-RestMethod http://localhost:9200/.kibana/config/5.5.1 -Method Put -Headers $headers -Body $body | ConvertTo-Json
+    $Body = '{ "defaultIndex"="logstash-*" }'
+    Invoke-RestMethod "http://localhost:9200/.kibana/config/5.5.1" -Method Put -Headers $Headers -Body $Body
 }
 
 $FirstTime = !(Test-Path ./docker-elk/README.md)
