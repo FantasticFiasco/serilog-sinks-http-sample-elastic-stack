@@ -11,7 +11,7 @@ namespace ElasticStackExample
         {
             ILogger logger = new LoggerConfiguration()
                 .WriteTo.DurableHttp(
-                    requestUri: "http://localhost:31311",
+                    requestUri: "http://logstash:31311",
                     batchFormatter: new ArrayBatchFormatter())
                 .WriteTo.Console()
                 .CreateLogger()

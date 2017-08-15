@@ -11,7 +11,7 @@ function Initialize-Image
 function Start-Container
 {
     Print("Start Docker container...")
-    docker run -it --rm elastic-stack-sample
+    docker run --network=elk -it --rm elastic-stack-sample
 }
 
 Initialize-Image
