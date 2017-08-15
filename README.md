@@ -1,7 +1,5 @@
 # Serilog and the Elastic Stack
 
-[![Build status](https://ci.appveyor.com/api/projects/status/5jjm8xq9a0d4j2vt/branch/master?svg=true)](https://ci.appveyor.com/project/FantasticFiasco/serilog-sinks-http-elastic-stack/branch/master)
-
 ## Usage
 
 ### Elastic Stack
@@ -27,3 +25,8 @@ PS> Invoke-RestMethod "http://localhost:9200/.kibana/config/5.5.1" `
 ```
 
 ### Serilog
+
+```bash
+PS> cd serilog
+PS> docker-compose up
+```
