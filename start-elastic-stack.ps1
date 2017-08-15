@@ -2,48 +2,6 @@ function Print ([string] $Message) {
     Write-Host $Message -ForegroundColor Blue
 }
 
-function Initialize-Submodules
-{
-    Print("Initialize git submodules...")
-    git submodule update --init --recursive
-}
-
-function Edit-LogstashPipeline
-{
-    Print("Configure Logstash HTTP input plugin to use JSON codec...")
-    $Configuration =
-@"
-input {
-    tcp {
-        port => 5000
-    }
-    http {
-        port => 31311
-        codec => json
-    }
-}
-
-output {
-	elasticsearch {
-		hosts => "elasticsearch:9200"
-	}
-}
-"@
-
-    $FilePath = Resolve-Path "./docker-elk/logstash/pipeline/logstash.conf"
-    [System.IO.File]::WriteAllLines($FilePath, $Configuration)
-
-    $Configuration = 
-@"
-# https://github.com/elastic/logstash-docker
-FROM docker.elastic.co/logstash/logstash:5.5.1
-RUN logstash-plugin install logstash-input-http
-"@
-
-    $FilePath = Resolve-Path "./docker-elk/logstash/Dockerfile"
-    [System.IO.File]::WriteAllLines($FilePath, $Configuration)
-}
-
 function Edit-LogstashIndexPattern
 {
     Print("Configure Logstash index pattern...");
@@ -63,24 +21,19 @@ function Start-ElasticStack
     Start-Process -FilePath docker-compose -ArgumentList up -WorkingDirectory .\docker-elk
 }
 
-$FirstTime = !(Test-Path ./docker-elk/README.md)
-If ($FirstTime -eq $True)
-{
-    Initialize-Submodules
-    Edit-LogstashPipeline
-}
+#$FirstTime = !(Test-Path ./docker-elk/README.md)
 
 Start-ElasticStack
 
-If ($FirstTime -eq $True)
-{
+#If ($FirstTime -eq $True)
+#{
     Print("Wait 2 minutes for Elastic Stack to complete its initialization...")
     Start-Sleep 120
     Edit-LogstashIndexPattern
-}
-else {
-    Print("Wait 30 seconds for Elastic Stack to complete its initialization...")
-    Start-Sleep 30
-}
+#}
+#else {
+#    Print("Wait 30 seconds for Elastic Stack to complete its initialization...")
+#    Start-Sleep 30
+#}
 
 Print("Done, the Elastic Stack is now running!");
