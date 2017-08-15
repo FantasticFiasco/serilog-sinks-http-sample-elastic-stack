@@ -5,5 +5,8 @@ build_script:
     $logo = (Invoke-WebRequest "https://raw.githubusercontent.com/FantasticFiasco/logo/master/logo.raw").toString();
     Write-Host "$logo" -ForegroundColor Green;
 - ps: >-
-    cd ./src;
-    docker build -t elastic-stack-sample .;
+    cd ./elastic-stack;
+    docker-compose build;
+- ps: >-
+    cd ./serilog;
+    docker-compose build;
