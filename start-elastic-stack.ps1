@@ -33,8 +33,7 @@ output {
 "@
 
     $FilePath = Resolve-Path "./docker-elk/logstash/pipeline/logstash.conf"
-    $Encoding = New-Object System.Text.UTF8Encoding $False
-    [System.IO.File]::WriteAllLines($FilePath, $Configuration, $Encoding)
+    [System.IO.File]::WriteAllLines($FilePath, $Configuration)
 }
 
 function Edit-LogstashIndexPattern
