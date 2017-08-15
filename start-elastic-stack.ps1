@@ -23,8 +23,6 @@ input {
     }
 }
 
-## Add your filters / logstash plugins configuration here
-
 output {
 	elasticsearch {
 		hosts => "elasticsearch:9200"
@@ -33,6 +31,16 @@ output {
 "@
 
     $FilePath = Resolve-Path "./docker-elk/logstash/pipeline/logstash.conf"
+    [System.IO.File]::WriteAllLines($FilePath, $Configuration)
+
+    $Configuration = 
+@"
+# https://github.com/elastic/logstash-docker
+FROM docker.elastic.co/logstash/logstash:5.5.1
+RUN logstash-plugin install logstash-input-http
+"@
+
+    $FilePath = Resolve-Path "./docker-elk/logstash/Dockerfile"
     [System.IO.File]::WriteAllLines($FilePath, $Configuration)
 }
 
