@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+
+  serilog:
+    build:
+      context: .
+    networks:
+      - elasticstack_elk
+
+networks: 
+  elasticstack_elk:
+    external: true
