@@ -14,10 +14,13 @@ function Edit-LogstashPipeline
     $Configuration =
 @"
 input {
-	http {
-		port => 31311
-		codec => json
-	}
+    tcp {
+        port => 5000
+    }
+    http {
+        port => 31311
+        codec => json
+    }
 }
 
 ## Add your filters / logstash plugins configuration here
