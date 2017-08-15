@@ -28,7 +28,9 @@ output {
 	}
 }
 "@
-    $LogstashConfiguration | Out-File -FilePath ./docker-elk/logstash/pipeline/logstash.conf -Encoding utf8
+
+    $Encoding = New-Object System.Text.UTF8Encoding $False
+    [System.IO.File]::WriteAllLines("./docker-elk/logstash/pipeline/logstash.conf", $LogstashConfiguration, $Encoding)
 }
 
 function Edit-LogstashIndexPattern
