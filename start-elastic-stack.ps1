@@ -4,14 +4,14 @@ function Print ([string] $Message) {
 
 function Initialize-Submodules
 {
-    Print("Update git submodules...")
+    Print("Initialize git submodules...")
     git submodule update --init --recursive
 }
 
 function Edit-LogstashPipeline
 {
     Print("Configure Logstash HTTP input plugin to use JSON codec...")
-    $LogstashConfiguration =
+    $Configuration =
 @"
 input {
 	http {
@@ -29,15 +29,13 @@ output {
 }
 "@
 
+    $FilePath = "./docker-elk/logstash/pipeline/logstash.conf"
     $Encoding = New-Object System.Text.UTF8Encoding $False
-    [System.IO.File]::WriteAllLines("./docker-elk/logstash/pipeline/logstash.conf", $LogstashConfiguration, $Encoding)
+    [System.IO.File]::WriteAllLines($FilePath, $Configuration, $Encoding)
 }
 
 function Edit-LogstashIndexPattern
 {
-    Print("Wait 2 minutes for Elastic Stack to complete its initialization...")
-    Start-Sleep 120
-
     Print("Configure Logstash index pattern...");
     $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
     $Headers.Add("Content-Type", 'application/json')
@@ -66,7 +64,13 @@ Start-ElasticStack
 
 If ($FirstTime -eq $True)
 {
+    Print("Wait 2 minutes for Elastic Stack to complete its initialization...")
+    Start-Sleep 120
     Edit-LogstashIndexPattern
+}
+else {
+    Print("Wait 30 seconds for Elastic Stack to complete its initialization...")
+    Start-Sleep 30
 }
 
 Print("Done, the Elastic Stack is now running!");
