@@ -2,10 +2,29 @@
 
 ## Table of contents
 
+- [Introduction](#introduction)
+- [What you will end up with](#what-you-will-end-up-with)
+- [Requirements](#requirements)
 - [Usage on Windows](#usage-on-windows)
 - [Usage on Linux](#usage-on-linux)
+- [Credit](#credit)
 
 ---
+
+## Introduction
+
+[Elastic Stack](https://www.elastic.co/products) is fantastic at collecting and visualizing log events. [Serilog](https://serilog.net/) is fantastic at producing structured log events. This repository provides a sandbox where developers can explore the life of a log event starting with its birth in Serilog, its transport over the network to Logstash, its fields being indexed by Elasticsearch and finally its legacy being recorded as a historical event in Kibana.
+
+## What you will end up with
+
+![alt text](./doc/resources/kibana.png "Kibana rendering log events")
+
+With a running Elastic Stack and Serilog producing log events you are now ready to take it to the next level. If you fancy the producing part you'll dig deeper into Serilog and its configuration of log contexts, enrichers and message formatters. If you enjoy monitoring applications in production you'll explore Kibana with its visualizations and dashboards.
+
+## Requirements
+
+- [Docker](https://www.docker.com/community-edition#/download)
+- [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Usage on Windows
 
@@ -80,3 +99,7 @@ $ docker-compose up
 ### Using Kibana to render the log events
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
+
+## Credit
+
+The `elastic-stack` directory is a clone of [docker-elk](https://github.com/deviantony/docker-elk) with minor modifications. Credit to [deviantony](https://github.com/deviantony) for publishing the Elastic Stack boilerplate.
