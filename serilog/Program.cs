@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Threading;
+using Bogus;
 using Serilog;
 using Serilog.Sinks.Http.BatchFormatters;
+using SerilogExample.Generators;
 
-namespace ElasticStackExample
+namespace SerilogExample
 {
     public class Program
     {
@@ -17,15 +19,16 @@ namespace ElasticStackExample
                 .CreateLogger()
                 .ForContext<Program>();
 
-            var currentUser = new User { FirstName = "John", Surname = "Doe" };
+            var customerGenerator = new CustomerGenerator();
+            var orderGenerator = new OrderGenerator();
 
-            for (int i = 0; i < 5; i++)
+            while (true)
             {
-                logger.Information(
-                    "Logging heartbeat from {@User} on {Computer}",
-                    currentUser,
-                    Environment.MachineName);
-
+                var customer = customerGenerator.Generate();
+                var order = orderGenerator.Generate();
+                
+                logger.Information("{@customer} placed {@order}", customer, order);
+                
                 Thread.Sleep(1000);
             }
         }
