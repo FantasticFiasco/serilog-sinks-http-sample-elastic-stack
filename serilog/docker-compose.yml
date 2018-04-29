@@ -5,8 +5,8 @@ services:
     build:
       context: .
     networks:
-      - elasticstack_elk
+      - elastic-stack_elk
 
 networks: 
-  elasticstack_elk:
+  elastic-stack_elk:
     external: true
