@@ -41,15 +41,12 @@ If this is the first time the stack is started, you'll have to create a Logstash
 
 ```posh
 PS> $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-PS> $Headers.Add("Content-Type", 'application/json')
-PS> Invoke-RestMethod "http://localhost:9200/.kibana/index-pattern/logstash-*" `
-      -Method Put `
+PS> $Headers.Add("Content-Type", "application/json")
+PS> $Headers.Add("kbn-version", "6.2.3")
+PS> Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
+      -Method Post `
       -Headers $Headers `
-      -Body '{ "title":"logstash-*", "timeFieldName":"@timestamp", "notExpandable":true }'
-PS> Invoke-RestMethod "http://localhost:9200/.kibana/config/5.5.1" `
-      -Method Put `
-      -Headers $Headers `
-      -Body '{ "defaultIndex":"logstash-*" }'
+      -Body '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
 ### Publishing log events using Serilog
@@ -79,12 +76,10 @@ $ docker-compose up
 If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands:
 
 ```bash
-$ curl -XPUT -D- 'http://localhost:9200/.kibana/index-pattern/logstash-*' \
+$ curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
     -H 'Content-Type: application/json' \
-    -d '{"title" : "logstash-*", "timeFieldName": "@timestamp", "notExpandable": true}'
-$ curl -XPUT -D- 'http://localhost:9200/.kibana/config/5.5.1' \
-    -H 'Content-Type: application/json' \
-    -d '{"defaultIndex": "logstash-*"}'
+    -H 'kbn-version: 6.2.3' \
+    -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
 ### Publishing log events using Serilog
