@@ -12,7 +12,7 @@ namespace SerilogExample
         static void Main()
         {
             ILogger logger = new LoggerConfiguration()
-                .WriteTo.DurableHttp(
+                .WriteTo.DurableHttpUsingFileSizeRolledBuffers(
                     requestUri: "http://logstash:31311",
                     batchFormatter: new ArrayBatchFormatter())
                 .WriteTo.Console()
