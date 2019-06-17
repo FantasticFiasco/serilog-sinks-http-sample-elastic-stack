@@ -14,3 +14,15 @@ services:
     depends_on:
       - logstash
     restart: on-failure
+
+  kibana:
+    environment: 
+      LOGSPOUT: ignore
+
+  elasticsearch:
+    environment: 
+      LOGSPOUT: ignore
+
+  logstash:
+    environment: 
+      LOGSPOUT: ignore
