@@ -4,6 +4,8 @@ services:
   serilog-example:
     build:
       context: .
+    environment: 
+      USE_LOGSPOUT:
     networks:
       - elastic-stack_elk
 

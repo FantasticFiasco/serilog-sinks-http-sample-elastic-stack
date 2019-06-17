@@ -23,6 +23,26 @@ input {
 }
 ```
 
+### Publishing log events using Serilog
+
+Run the following commands to publish log events to Logstash via Serilog > stdout > logspout:
+
+**Linux**
+```bash
+$ cd serilog/
+$ export USE_LOGSPOUT=true
+$ docker-compose up
+```
+
+
+**Windows**
+```posh
+PS> cd .\serilog\
+PS> $env:USE_LOGSPOUT='true'
+PS> docker-compose up
+```
+
+
 ## Documentation
 
 https://github.com/looplab/logspout-logstash
