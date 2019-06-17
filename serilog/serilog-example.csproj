@@ -6,6 +6,7 @@
   <ItemGroup>
     <PackageReference Include="Bogus" Version="24.*" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.*" />
+    <PackageReference Include="Serilog.Formatting.Elasticsearch" Version="7.1.0" />
     <PackageReference Include="Serilog.Sinks.Console" Version="3.*" />
     <PackageReference Include="Serilog.Sinks.Http" Version="5.*" />
   </ItemGroup>
