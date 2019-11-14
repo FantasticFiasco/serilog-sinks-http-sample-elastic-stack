@@ -1,6 +1,6 @@
 image: ubuntu
 
 build_script:
-    - ./build/update-elastic-stack-version.sh
+    - if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then ./build/update-elastic-stack-version.sh; fi
 
 test: off
