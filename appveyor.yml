@@ -1,6 +1,6 @@
 image: ubuntu
 
 build_script:
-    - echo "Hello world"
+    - echo "$APPVEYOR_REPO_BRANCH"
 
 test: off
