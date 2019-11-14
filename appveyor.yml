@@ -1,6 +1,6 @@
 image: ubuntu
 
 build_script:
-    - echo "$APPVEYOR_REPO_BRANCH"
+    - ./build/update-elastic-stack-version.sh
 
 test: off
