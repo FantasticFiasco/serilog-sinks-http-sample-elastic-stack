@@ -2,3 +2,5 @@ image: ubuntu
 
 build_script:
     - echo "Hello world"
+
+test: off
