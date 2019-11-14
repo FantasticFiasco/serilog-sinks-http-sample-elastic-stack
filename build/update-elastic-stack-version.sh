@@ -9,3 +9,4 @@ sed -i -E "s/'kbn-version: [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'/\'kbn-versi
 
 echo "$APPVEYOR_REPO_BRANCH"
 git add $README
+git status
