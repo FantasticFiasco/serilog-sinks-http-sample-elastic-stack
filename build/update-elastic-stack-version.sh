@@ -8,5 +8,4 @@ sed -i -E "s/\"kbn-version\", \"[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\"/\"kbn
 sed -i -E "s/'kbn-version: [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'/\'kbn-version: ${DOCKERFILE_VERSION}\'/g" $README
 
 echo "$APPVEYOR_REPO_BRANCH"
-git diff
-cat "$README"
+git status
