@@ -11,6 +11,6 @@ install:
     - echo "-----END RSA PRIVATE KEY-----" >> $HOME/.ssh/id_rsa
 
 build_script:
-    - if [ "$APPVEYOR_REPO_BRANCH" == "master" ]; then ./build/update-elastic-stack-version.sh; fi
+    - ./build/update-elastic-stack-version.sh
 
 test: off
