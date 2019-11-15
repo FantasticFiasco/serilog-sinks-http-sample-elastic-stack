@@ -27,3 +27,4 @@ sed -i -E "s/'kbn-version: [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'/\'kbn-versi
 # Commit changes
 git add $README
 git diff-index --cached --quiet HEAD || git commit -m "docs(readme): update elastic version"
+git push
