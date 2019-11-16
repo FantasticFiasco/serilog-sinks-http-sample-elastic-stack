@@ -1,7 +1,7 @@
 image: ubuntu
 
 services:
-- docker
+    - docker
 
 environment:
     SSH_PRIVATE_KEY:
