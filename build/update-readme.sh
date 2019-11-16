@@ -1,6 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
+# Don't update README on pull requests since secure AppVeyor variables aren't
+# provided in pull requests
 if [ "$APPVEYOR_PULL_REQUEST_TITLE" != "" ]
 then
     exit
