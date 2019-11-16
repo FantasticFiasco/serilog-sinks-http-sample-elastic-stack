@@ -1,6 +1,11 @@
 #!/bin/bash
 set -euo pipefail
 
+if [ $APPVEYOR_PULL_REQUEST_TITLE != "" ]
+then
+    exit
+fi
+
 # Setup SSH
 mkdir ~/.ssh/
 echo "-----BEGIN RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
