@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-if [ $APPVEYOR_PULL_REQUEST_TITLE != "" ]
+if [ "$APPVEYOR_PULL_REQUEST_TITLE" != "" ]
 then
     exit
 fi
