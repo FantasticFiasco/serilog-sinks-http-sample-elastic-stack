@@ -1,5 +1,6 @@
 #!/bin/bash
-set -euxo pipefail
+#set -euxo pipefail
+set -euo pipefail
 
 mkdir ~/.ssh/
 echo "-----BEGIN RSA PRIVATE KEY-----" > $HOME/.ssh/id_rsa
