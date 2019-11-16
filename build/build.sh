@@ -1,6 +1,13 @@
 #!/bin/bash
 set -euxo pipefail
 
+mkdir ~/.ssh/
+echo "-----BEGIN RSA PRIVATE KEY-----" > $HOME/.ssh/id_rsa
+echo "${SSH_PRIVATE_KEY}" | tr " " "\n" >> $HOME/.ssh/id_rsa
+echo "-----END RSA PRIVATE KEY-----" >> $HOME/.ssh/id_rsa
+sudo chmod 600 $HOME/.ssh/id_rsa
+
+
 #echo "Host github.com" > ~/.ssh/config
 #cat ~/.ssh/config
 
