@@ -6,9 +6,9 @@ environment:
 
 install:
     - sudo mkdir -m 600 $HOME/.ssh/
-    - echo "-----BEGIN RSA PRIVATE KEY-----" > $HOME/.ssh/id_rsa
-    - echo "${SSH_PRIVATE_KEY}" | tr " " "\n" >> $HOME/.ssh/id_rsa
-    - echo "-----END RSA PRIVATE KEY-----" >> $HOME/.ssh/id_rsa
+    - sudo echo "-----BEGIN RSA PRIVATE KEY-----" > $HOME/.ssh/id_rsa
+    - sudo echo "${SSH_PRIVATE_KEY}" | tr " " "\n" >> $HOME/.ssh/id_rsa
+    - sudo echo "-----END RSA PRIVATE KEY-----" >> $HOME/.ssh/id_rsa
 #    - sudo chmod 600 $HOME/.ssh/id_rsa
 
 build_script:
