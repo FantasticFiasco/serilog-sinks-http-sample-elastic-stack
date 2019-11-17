@@ -1,5 +1,8 @@
 image: ubuntu
 
+stack:
+    - python 3.8
+
 services:
     - docker
 
