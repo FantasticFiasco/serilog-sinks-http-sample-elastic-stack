@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-pip --version
+pip install --upgrade pip
 pip install --user pipenv
 pipenv --version
 
