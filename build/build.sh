@@ -2,6 +2,7 @@
 set -euxo pipefail
 
 pip --version
+pipenv --version
 
 #pip install --user pipenv
 
