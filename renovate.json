@@ -1,6 +1,6 @@
 {
   "extends": [
-    "config:base"
+    "github>FantasticFiasco/renovate-config"
   ],
   "packageRules": [
     {
