@@ -12,7 +12,7 @@ fi
 # cat ~/.ssh/known_hosts
 
 # Setup SSH
-mkdir ~/.ssh/
+# mkdir ~/.ssh/
 echo "-----BEGIN RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
 echo "${SSH_PRIVATE_KEY}" | tr " " "\n" >> ~/.ssh/id_rsa
 echo "-----END RSA PRIVATE KEY-----" >> ~/.ssh/id_rsa
