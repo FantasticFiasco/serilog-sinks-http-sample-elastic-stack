@@ -8,6 +8,8 @@ then
     exit
 fi
 
+ls -la ~/.ssh/
+
 # Setup SSH
 mkdir ~/.ssh/
 echo "-----BEGIN RSA PRIVATE KEY-----" > ~/.ssh/id_rsa
