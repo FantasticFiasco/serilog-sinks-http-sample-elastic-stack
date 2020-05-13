@@ -9,6 +9,7 @@ then
 fi
 
 ls -la ~/.ssh/
+cat ~/.ssh/known_hosts
 
 # Setup SSH
 mkdir ~/.ssh/
