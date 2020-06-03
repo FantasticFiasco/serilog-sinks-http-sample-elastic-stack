@@ -42,7 +42,7 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```posh
 PS> $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 PS> $Headers.Add("Content-Type", "application/json")
-PS> $Headers.Add("kbn-version", "6.8.9")
+PS> $Headers.Add("kbn-version", "6.8.10")
 PS> Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
       -Method Post `
       -Headers $Headers `
@@ -78,7 +78,7 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```bash
 $ curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
     -H 'Content-Type: application/json' \
-    -H 'kbn-version: 6.8.9' \
+    -H 'kbn-version: 6.8.10' \
     -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
