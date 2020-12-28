@@ -12,8 +12,9 @@ namespace SerilogExample
         static void Main()
         {
             ILogger logger = new LoggerConfiguration()
-                .WriteTo.DurableHttpUsingFileSizeRolledBuffers(
+                .WriteTo.Http(
                     requestUri: "http://logstash:31311",
+                    textFormatter: new MetadataTextFormatter(),
                     batchFormatter: new ArrayBatchFormatter())
                 .WriteTo.Console()
                 .CreateLogger()
@@ -26,9 +27,9 @@ namespace SerilogExample
             {
                 var customer = customerGenerator.Generate();
                 var order = orderGenerator.Generate();
-                
+
                 logger.Information("{@customer} placed {@order}", customer, order);
-                
+
                 Thread.Sleep(1000);
             }
         }
