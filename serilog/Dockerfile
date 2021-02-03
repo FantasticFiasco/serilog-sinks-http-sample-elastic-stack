@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk
+FROM mcr.microsoft.com/dotnet/sdk:5.0
 
 WORKDIR /dotnetapp
 
