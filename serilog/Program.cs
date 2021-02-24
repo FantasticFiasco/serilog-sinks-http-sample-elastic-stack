@@ -11,9 +11,17 @@ namespace SerilogExample
     {
         static void Main()
         {
+            // Use the following request URI if you're running this console
+            // application in a Docker container
+            var requestUri = "http://logstash:31311";
+
+            // Use the following request URI if you're running this console
+            // application locally
+            //var requestUri = "http://localhost:31311";
+
             ILogger logger = new LoggerConfiguration()
                 .WriteTo.DurableHttpUsingFileSizeRolledBuffers(
-                    requestUri: "http://logstash:31311",
+                    requestUri: requestUri,
                     batchFormatter: new ArrayBatchFormatter())
                 .WriteTo.Console()
                 .CreateLogger()
@@ -26,9 +34,9 @@ namespace SerilogExample
             {
                 var customer = customerGenerator.Generate();
                 var order = orderGenerator.Generate();
-                
+
                 logger.Information("{@customer} placed {@order}", customer, order);
-                
+
                 Thread.Sleep(1000);
             }
         }
