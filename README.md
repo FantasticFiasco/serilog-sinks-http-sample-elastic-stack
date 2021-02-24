@@ -58,6 +58,8 @@ PS> cd .\serilog\
 PS> docker-compose up
 ```
 
+If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `.\serilog\Program.cs`.
+
 ### Using Kibana to render the log events
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
@@ -90,6 +92,8 @@ Run the following commands to publish log events to Logstash using Serilog:
 $ cd serilog/
 $ docker-compose up
 ```
+
+If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `./serilog/Program.cs`.
 
 ### Using Kibana to render the log events
 
