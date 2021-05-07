@@ -24,17 +24,16 @@ With a running Elastic Stack and Serilog producing log events you are now ready 
 ## Requirements
 
 - [Docker](https://www.docker.com/community-edition#/download)
-- [Docker Compose](https://docs.docker.com/compose/install)
 
 ## Usage on Windows
 
 ### Bringing up Elastic Stack
 
-Start the stack using `docker-compose`:
+Start the stack using `docker`:
 
 ```posh
 PS> cd .\elastic-stack\
-PS> docker-compose up
+PS> docker compose up
 ```
 
 If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands in PowerShell:
@@ -55,7 +54,7 @@ Run the following commands to publish log events to Logstash using Serilog:
 
 ```posh
 PS> cd .\serilog\
-PS> docker-compose up
+PS> docker compose up
 ```
 
 If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `.\serilog\Program.cs`.
@@ -68,11 +67,11 @@ Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:560
 
 ### Bringing up Elastic Stack
 
-Start the stack using `docker-compose`:
+Start the stack using `docker`:
 
 ```bash
 $ cd elastic-stack/
-$ docker-compose up
+$ docker compose up
 ```
 
 If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands:
@@ -90,7 +89,7 @@ Run the following commands to publish log events to Logstash using Serilog:
 
 ```bash
 $ cd serilog/
-$ docker-compose up
+$ docker compose up
 ```
 
 If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `./serilog/Program.cs`.
