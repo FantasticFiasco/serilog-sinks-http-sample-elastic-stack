@@ -17,7 +17,7 @@ sudo chmod 600 ~/.ssh/id_rsa
 # Setup git
 git remote set-url origin git@github.com:FantasticFiasco/serilog-sinks-http-sample-elastic-stack.git
 git config user.name FantasticFiasco
-git config user.email mattias.kindborg@gmail.com
+git config user.email mattias@kindb.org
 git checkout $APPVEYOR_REPO_BRANCH
 
 # Update Elastic Stack version in README
