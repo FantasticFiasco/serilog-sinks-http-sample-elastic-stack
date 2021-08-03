@@ -1,5 +1,5 @@
 # https://github.com/elastic/logstash-docker
-FROM docker.elastic.co/logstash/logstash-oss:7.13.4
+FROM docker.elastic.co/logstash/logstash-oss:7.14.0
 RUN logstash-plugin install logstash-input-http
 
 # Add your logstash plugins setup here
