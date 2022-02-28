@@ -41,7 +41,9 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```posh
 PS> $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 PS> $Headers.Add("Content-Type", "application/json")
-PS> $Headers.Add("kbn-version", "7.10.2")
+PS> $Headers.Add("kbn-version", "7.17.0")
+PS> $Auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("elastic:changeme"))
+PS> $Headers.Add("Authorization", "Basic {0}" -f $Auth)
 PS> Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
       -Method Post `
       -Headers $Headers `
@@ -79,7 +81,8 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```bash
 $ curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
     -H 'Content-Type: application/json' \
-    -H 'kbn-version: 7.10.2' \
+    -H 'kbn-version: 7.17.0' \
+    -u elastic:changeme \
     -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
@@ -96,7 +99,7 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 ### Using Kibana to render the log events
 
-Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
+Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
 
 ## Credit
 
