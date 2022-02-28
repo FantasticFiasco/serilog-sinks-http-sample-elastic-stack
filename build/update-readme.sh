@@ -25,7 +25,8 @@ git checkout $APPVEYOR_REPO_BRANCH
 echo "2"
 
 # Update Elastic Stack version in README
-DOCKERFILE_ELASTIC_VERSION=`grep -oP '\d+\.\d+\.\d+' ./elastic-stack/elasticsearch/Dockerfile`
+DOCKERFILE_ELASTIC_VERSION=`grep -oP '\d+\.\d+\.\d+' ./elastic-stack/.env`
+echo "$DOCKERFILE_ELASTIC_VERSION"
 sed -i -E "s/\"kbn-version\", \"[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\"/\"kbn-version\", \"${DOCKERFILE_ELASTIC_VERSION}\"/g" ./README.md
 sed -i -E "s/'kbn-version: [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'/\'kbn-version: ${DOCKERFILE_ELASTIC_VERSION}\'/g" ./README.md
 echo "3"
