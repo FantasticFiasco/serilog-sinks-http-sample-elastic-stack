@@ -5,6 +5,7 @@ set -euo pipefail
 # provided in pull requests
 if [ "$APPVEYOR_PULL_REQUEST_TITLE" != "" ]
 then
+    echo "Skip updating README in pull requests"
     exit
 fi
 
