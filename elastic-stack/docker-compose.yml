@@ -30,8 +30,6 @@ services:
       - ./logstash/config/logstash.yml:/usr/share/logstash/config/logstash.yml:ro,z
       - ./logstash/pipeline:/usr/share/logstash/pipeline:ro,z
     ports:
-      - "5000:5000/tcp"
-      - "5000:5000/udp"
       - "9600:9600"
       - "31311:31311"
     environment:
