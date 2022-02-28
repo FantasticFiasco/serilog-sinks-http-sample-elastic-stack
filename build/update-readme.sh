@@ -29,4 +29,4 @@ git add ./README.md
 git diff-index --cached --quiet HEAD || git commit -m "docs(readme): update elastic version"
 
 # Push git changes
-git push
+# git push
