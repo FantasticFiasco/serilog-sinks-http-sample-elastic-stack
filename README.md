@@ -6,7 +6,7 @@
 - [What you will end up with](#what-you-will-end-up-with)
 - [Requirements](#requirements)
 - [Usage on Windows](#usage-on-windows)
-- [Usage on Linux](#usage-on-linux)
+- [Usage on Linux and macOS](#usage-on-linux-and-macos)
 - [Credit](#credit)
 
 ---
@@ -65,7 +65,7 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
 
-## Usage on Linux
+## Usage on Linux and macOS
 
 ### Bringing up Elastic Stack
 
