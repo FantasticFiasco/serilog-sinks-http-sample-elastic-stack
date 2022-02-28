@@ -5,6 +5,7 @@ set -euo pipefail
 # provided in pull requests
 if [ "$APPVEYOR_PULL_REQUEST_TITLE" != "" ]
 then
+    echo "Skip updating README in pull requests"
     exit
 fi
 
@@ -21,7 +22,7 @@ git config user.email mattias@kindb.org
 git checkout $APPVEYOR_REPO_BRANCH
 
 # Update Elastic Stack version in README
-DOCKERFILE_ELASTIC_VERSION=`grep -oP '\d+\.\d+\.\d+' ./elastic-stack/elasticsearch/Dockerfile`
+DOCKERFILE_ELASTIC_VERSION=`grep -oP '\d+\.\d+\.\d+' ./elastic-stack/.env`
 sed -i -E "s/\"kbn-version\", \"[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+\"/\"kbn-version\", \"${DOCKERFILE_ELASTIC_VERSION}\"/g" ./README.md
 sed -i -E "s/'kbn-version: [[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+'/\'kbn-version: ${DOCKERFILE_ELASTIC_VERSION}\'/g" ./README.md
 git add ./README.md
