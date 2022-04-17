@@ -20,9 +20,7 @@ namespace SerilogExample
             //var requestUri = "http://localhost:31311";
 
             ILogger logger = new LoggerConfiguration()
-                .WriteTo.DurableHttpUsingFileSizeRolledBuffers(
-                    requestUri: requestUri,
-                    batchFormatter: new ArrayBatchFormatter())
+                .WriteTo.DurableHttpUsingFileSizeRolledBuffers(requestUri: requestUri)
                 .WriteTo.Console()
                 .CreateLogger()
                 .ForContext<Program>();
