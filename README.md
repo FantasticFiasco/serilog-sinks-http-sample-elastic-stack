@@ -63,7 +63,7 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 ### Using Kibana to render the log events
 
-Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser.
+Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
 
 ## Usage on Linux and macOS
 
