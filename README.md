@@ -32,22 +32,22 @@ With a running Elastic Stack and Serilog producing log events you are now ready 
 Start the stack using `docker`:
 
 ```posh
-PS> cd .\elastic-stack\
-PS> docker compose up
+cd .\elastic-stack\
+docker compose up
 ```
 
 If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands in PowerShell:
 
 ```posh
-PS> $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-PS> $Headers.Add("Content-Type", "application/json")
-PS> $Headers.Add("kbn-version", "7.17.0")
-PS> $Auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("elastic:changeme"))
-PS> $Headers.Add("Authorization", "Basic {0}" -f $Auth)
-PS> Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
-      -Method Post `
-      -Headers $Headers `
-      -Body '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
+$Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
+$Headers.Add("Content-Type", "application/json")
+$Headers.Add("kbn-version", "7.17.0")
+$Auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("elastic:changeme"))
+$Headers.Add("Authorization", "Basic {0}" -f $Auth)
+Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
+  -Method Post `
+  -Headers $Headers `
+  -Body '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
 ### Publishing log events using Serilog
@@ -55,8 +55,8 @@ PS> Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
 Run the following commands to publish log events to Logstash using Serilog:
 
 ```posh
-PS> cd .\serilog\
-PS> docker compose up
+cd .\serilog\
+docker compose up
 ```
 
 If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `.\serilog\Program.cs`.
@@ -71,28 +71,28 @@ Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:560
 
 Start the stack using `docker`:
 
-```bash
-$ cd elastic-stack/
-$ docker compose up
+```sh
+cd elastic-stack/
+docker compose up
 ```
 
 If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands:
 
-```bash
-$ curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
-    -H 'Content-Type: application/json' \
-    -H 'kbn-version: 7.17.0' \
-    -u elastic:changeme \
-    -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
+```sh
+curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
+  -H 'Content-Type: application/json' \
+  -H 'kbn-version: 7.17.0' \
+  -u elastic:changeme \
+  -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
 ### Publishing log events using Serilog
 
 Run the following commands to publish log events to Logstash using Serilog:
 
-```bash
-$ cd serilog/
-$ docker compose up
+```sh
+cd serilog/
+docker compose up
 ```
 
 If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `./serilog/Program.cs`.
