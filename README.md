@@ -41,7 +41,7 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```posh
 $Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
 $Headers.Add("Content-Type", "application/json")
-$Headers.Add("kbn-version", "7.17.0")
+$Headers.Add("kbn-version", "8.13.2")
 $Auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("elastic:changeme"))
 $Headers.Add("Authorization", "Basic {0}" -f $Auth)
 Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
@@ -81,7 +81,7 @@ If this is the first time the stack is started, you'll have to create a Logstash
 ```sh
 curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
   -H 'Content-Type: application/json' \
-  -H 'kbn-version: 7.17.0' \
+  -H 'kbn-version: 8.13.2' \
   -u elastic:changeme \
   -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
