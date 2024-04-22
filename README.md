@@ -11,10 +11,6 @@
   - [Bringing up Elastic Stack](#bringing-up-elastic-stack)
   - [Publishing log events using Serilog](#publishing-log-events-using-serilog)
   - [Using Kibana to render the log events](#using-kibana-to-render-the-log-events)
-- [Usage on Linux and macOS](#usage-on-linux-and-macos)
-  - [Bringing up Elastic Stack](#bringing-up-elastic-stack-1)
-  - [Publishing log events using Serilog](#publishing-log-events-using-serilog-1)
-  - [Using Kibana to render the log events](#using-kibana-to-render-the-log-events-1)
 - [Credit](#credit)
 
 ---
@@ -63,45 +59,6 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
 
-<<<<<<< HEAD
-## Usage on Linux and macOS
-
-### Bringing up Elastic Stack
-
-Start the stack using `docker`:
-
-```sh
-cd elastic-stack/
-docker compose up
-```
-
-If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands:
-
-```sh
-curl -XPOST -D- 'http://localhost:5601/api/saved_objects/index-pattern' \
-  -H 'Content-Type: application/json' \
-  -H 'kbn-version: 8.13.2' \
-  -u elastic:changeme \
-  -d '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
-```
-
-### Publishing log events using Serilog
-
-Run the following commands to publish log events to Logstash using Serilog:
-
-```sh
-cd serilog/
-docker compose up
-```
-
-If you decide to run the application outside of Docker in your terminal, don't forget to change the request URI to `http://localhost:31311`. More information can be found in `./serilog/Program.cs`.
-
-### Using Kibana to render the log events
-
-Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
-
-=======
->>>>>>> e213a79 (wip)
 ## Credit
 
 The `elastic-stack` directory is a clone of [docker-elk](https://github.com/deviantony/docker-elk) with minor modifications. Credit to [deviantony](https://github.com/deviantony) for publishing the Elastic Stack boilerplate.
