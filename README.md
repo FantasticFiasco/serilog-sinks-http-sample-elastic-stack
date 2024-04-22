@@ -1,12 +1,20 @@
+<!-- omit from toc -->
 # Serilog and the Elastic Stack
 
+<!-- omit from toc -->
 ## Table of contents
 
 - [Introduction](#introduction)
 - [What you will end up with](#what-you-will-end-up-with)
 - [Requirements](#requirements)
-- [Usage on Windows](#usage-on-windows)
+- [Usage](#usage)
+  - [Bringing up Elastic Stack](#bringing-up-elastic-stack)
+  - [Publishing log events using Serilog](#publishing-log-events-using-serilog)
+  - [Using Kibana to render the log events](#using-kibana-to-render-the-log-events)
 - [Usage on Linux and macOS](#usage-on-linux-and-macos)
+  - [Bringing up Elastic Stack](#bringing-up-elastic-stack-1)
+  - [Publishing log events using Serilog](#publishing-log-events-using-serilog-1)
+  - [Using Kibana to render the log events](#using-kibana-to-render-the-log-events-1)
 - [Credit](#credit)
 
 ---
@@ -25,7 +33,7 @@ With a running Elastic Stack and Serilog producing log events you are now ready 
 
 - [Docker](https://www.docker.com/community-edition#/download)
 
-## Usage on Windows
+## Usage
 
 ### Bringing up Elastic Stack
 
@@ -33,21 +41,11 @@ Start the stack using `docker`:
 
 ```posh
 cd .\elastic-stack\
+
+# This command is only necessary the first time the stack is started
+docker compose up setup
+
 docker compose up
-```
-
-If this is the first time the stack is started, you'll have to create a Logstash index pattern. Give the stack some time to initialize and then run the following commands in PowerShell:
-
-```posh
-$Headers = New-Object "System.Collections.Generic.Dictionary[[String],[String]]"
-$Headers.Add("Content-Type", "application/json")
-$Headers.Add("kbn-version", "8.13.2")
-$Auth = [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes("elastic:changeme"))
-$Headers.Add("Authorization", "Basic {0}" -f $Auth)
-Invoke-RestMethod "http://localhost:5601/api/saved_objects/index-pattern" `
-  -Method Post `
-  -Headers $Headers `
-  -Body '{"attributes":{"title":"logstash-*","timeFieldName":"@timestamp"}}'
 ```
 
 ### Publishing log events using Serilog
@@ -65,6 +63,7 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
 
+<<<<<<< HEAD
 ## Usage on Linux and macOS
 
 ### Bringing up Elastic Stack
@@ -101,6 +100,8 @@ If you decide to run the application outside of Docker in your terminal, don't f
 
 Access the Kibana web UI by hitting [http://localhost:5601](http://localhost:5601) with a web browser, and when prompted enter username `elastic` and password `changeme`.
 
+=======
+>>>>>>> e213a79 (wip)
 ## Credit
 
 The `elastic-stack` directory is a clone of [docker-elk](https://github.com/deviantony/docker-elk) with minor modifications. Credit to [deviantony](https://github.com/deviantony) for publishing the Elastic Stack boilerplate.
